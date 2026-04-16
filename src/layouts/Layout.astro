@@ -1,0 +1,51 @@
+---
+import "../styles/global.css";
+import sdLogo from "../assets/sd-logo-cropped.png";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Sawatzky Development | High-Performance Web Engineering",
+  description = "Bespoke, high-performance websites for local businesses built with Astro and deployed on Cloudflare.",
+} = Astro.props as Props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="min-h-screen bg-slate-950 text-zinc-100 antialiased">
+    <div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_15%_10%,rgba(88,214,255,0.18),transparent_34%),radial-gradient(circle_at_85%_0%,rgba(18,73,154,0.24),transparent_34%)]"></div>
+    <header class="sticky top-0 z-50 border-b border-sky-900/40 bg-slate-950/90 backdrop-blur-md">
+      <div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+        <a href="/" class="inline-flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">
+          <img
+            src={sdLogo.src}
+            alt="Sawatzky Development monogram"
+            class="h-14 w-14 object-contain sm:h-16 sm:w-16"
+            loading="eager"
+          />
+          <span class="hidden text-base font-semibold uppercase tracking-[0.12em] text-zinc-100 sm:inline lg:text-lg">
+            Sawatzky <span class="font-medium tracking-[0.14em] text-zinc-400">Development</span>
+          </span>
+        </a>
+        <nav class="flex flex-wrap items-center justify-end gap-3 text-sm text-zinc-300">
+          <a href="#services" class="rounded-md px-2 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">Services</a>
+          <a href="#portfolio" class="rounded-md px-2 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">Portfolio</a>
+          <a href="#contact" class="rounded-md border border-sky-900/60 bg-slate-900/40 px-3 py-1.5 font-medium text-zinc-100 transition hover:border-sky-500/60 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">Contact</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+  </body>
+</html>
