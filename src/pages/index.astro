@@ -1,5 +1,5 @@
 ---
-import { ArrowRight, Gauge, Rocket, ShieldCheck } from "lucide-react";
+import { ArrowRight, ExternalLink, Gauge, Rocket, ShieldCheck } from "lucide-react";
 import Layout from "../layouts/Layout.astro";
 import sdLogo from "../assets/sd-logo-cropped.png";
 ---
@@ -25,18 +25,19 @@ import sdLogo from "../assets/sd-logo-cropped.png";
           href="#portfolio"
           class="inline-flex items-center justify-center gap-2 rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-100"
         >
-          View the Performance Audit
+          See Recent Work
           <ArrowRight class="h-4 w-4" />
         </a>
         <a
-          href="#contact"
+          href="#"
+          data-contact-open
           class="inline-flex items-center justify-center rounded-md border border-sky-900/60 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-zinc-100 transition hover:border-sky-500/60 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-100"
         >
-          Book a Consultation
+          Start with a $50 custom demo
         </a>
       </div>
       <p class="mt-4 text-sm font-medium text-sky-200/90">
-        Plans start at <span class="text-white">$250 setup + $49/month</span>.
+        Plans start at <span class="text-white">$250 setup + $49/month</span>, or begin with a <span class="text-white">$50 custom one-page demo</span> credited toward setup.
       </p>
     </div>
   </section>
@@ -57,7 +58,7 @@ import sdLogo from "../assets/sd-logo-cropped.png";
       </p>
       <div class="mt-7">
         <a
-          href="#portfolio"
+          href="#cost"
           class="inline-flex items-center gap-2 rounded-md border border-sky-900/60 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-zinc-100 transition hover:border-sky-500/60 hover:bg-slate-900"
         >
           Show Me the Real Cost
@@ -67,7 +68,7 @@ import sdLogo from "../assets/sd-logo-cropped.png";
     </div>
   </section>
 
-  <section id="portfolio" class="scroll-mt-28 mx-auto w-full max-w-6xl px-4 pb-16 sm:scroll-mt-32 sm:px-6 sm:pb-20 lg:px-8">
+  <section id="cost" class="scroll-mt-28 mx-auto w-full max-w-6xl px-4 pb-16 sm:scroll-mt-32 sm:px-6 sm:pb-20 lg:px-8">
     <div class="relative overflow-hidden rounded-2xl border border-cyan-800/60 bg-gradient-to-br from-slate-900 via-cyan-950/20 to-slate-900 p-6 sm:p-8 lg:p-10">
       <div class="pointer-events-none absolute inset-x-0 top-0 h-1 bg-cyan-300/70"></div>
       <div class="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200">
@@ -103,10 +104,11 @@ import sdLogo from "../assets/sd-logo-cropped.png";
       </div>
       <div class="mt-7">
         <a
-          href="#contact"
+          href="#"
+          data-contact-open
           class="inline-flex items-center gap-2 rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200"
         >
-          Get the Faster Path
+          Start with a $50 demo
           <ArrowRight class="h-4 w-4" />
         </a>
       </div>
@@ -121,11 +123,11 @@ import sdLogo from "../assets/sd-logo-cropped.png";
         The Opportunity
       </div>
       <h2 class="mt-4 max-w-3xl text-2xl font-semibold text-white sm:text-3xl lg:text-4xl">
-        Get a Custom Site Without the Typical Agency Price Shock.
+        Start with a $50 Custom One-Page Demo Before You Commit.
       </h2>
       <p class="mt-4 max-w-3xl text-sm leading-relaxed text-zinc-300 sm:text-base">
-        The hybrid subscription model keeps this an easy yes: a lower setup fee, predictable monthly cost, and managed website care without you
-        becoming the web team.
+        I design and build a demo tailored to your business, then credit that $50 toward your startup cost if you move forward.
+        It is the easiest way to see your offer brought to life before a full build.
       </p>
       <div class="mt-6 grid gap-4 md:grid-cols-3">
         <article class="rounded-xl border border-slate-800 bg-slate-950/40 p-5">
@@ -164,10 +166,11 @@ import sdLogo from "../assets/sd-logo-cropped.png";
       </div>
       <div class="mt-7 flex flex-col gap-3 sm:flex-row">
         <a
-          href="mailto:hello@sawatzky.dev"
+          href="#"
+          data-contact-open
           class="inline-flex items-center justify-center gap-2 rounded-md bg-sky-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-sky-200"
         >
-          Book a Consultation
+          Get My $50 Demo
           <ArrowRight class="h-4 w-4" />
         </a>
         <a
@@ -175,6 +178,68 @@ import sdLogo from "../assets/sd-logo-cropped.png";
           class="inline-flex items-center justify-center rounded-md border border-sky-900/60 px-5 py-3 text-sm font-semibold text-zinc-100 transition hover:border-sky-500/60 hover:bg-slate-800"
         >
           See Full Plan Details
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio" class="scroll-mt-28 mx-auto w-full max-w-6xl px-4 pb-16 sm:scroll-mt-32 sm:px-6 sm:pb-20 lg:px-8">
+    <div class="relative overflow-hidden rounded-2xl border border-indigo-900/50 bg-gradient-to-br from-slate-900 via-indigo-950/30 to-slate-900 p-6 sm:p-8 lg:p-10">
+      <div class="pointer-events-none absolute inset-y-0 left-0 w-1 bg-indigo-300/70"></div>
+      <div class="inline-flex items-center gap-2 rounded-full border border-indigo-400/30 bg-indigo-400/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-indigo-200">
+        <Rocket class="h-3.5 w-3.5" />
+        Still not convinced?
+      </div>
+      <h2 class="mt-4 max-w-3xl text-2xl font-semibold text-white sm:text-3xl lg:text-4xl">
+        Open the work and see the quality for yourself.
+      </h2>
+      <p class="mt-4 max-w-3xl text-sm leading-relaxed text-zinc-300 sm:text-base">
+        If you want proof before you book, here it is. One link is a live client-style build; the other is a demo concept site to show design and performance.
+      </p>
+      <div class="mt-6 grid gap-4 md:grid-cols-2">
+        <article class="rounded-xl border border-amber-900/40 bg-slate-950/50 p-5">
+          <div class="flex flex-wrap items-center gap-2">
+            <h3 class="text-lg font-semibold text-white">Jasper resort golf (demo)</h3>
+            <span class="rounded-full border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 text-[0.65rem] font-semibold uppercase tracking-wide text-amber-200">
+              Concept / not a client
+            </span>
+          </div>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-300">
+            Spec work: mountain resort storytelling, structure, and speed — built to show what a high-end course site could look like on Astro.
+          </p>
+          <a
+            href="https://jasper-mountain-golf.pages.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sky-200 transition hover:text-sky-100"
+          >
+            Open demo
+            <ExternalLink class="h-4 w-4" />
+          </a>
+        </article>
+        <article class="rounded-xl border border-slate-800 bg-slate-950/50 p-5">
+          <h3 class="text-lg font-semibold text-white">Edmonton Springs Golf Course</h3>
+          <p class="mt-2 text-sm leading-relaxed text-zinc-300">
+            Spruce Grove public course — tee times, leagues, and local trust in one fast, easy-to-scan site.
+          </p>
+          <a
+            href="https://edmonton-springs-golf.pages.dev/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-sky-200 transition hover:text-sky-100"
+          >
+            Visit live site
+            <ExternalLink class="h-4 w-4" />
+          </a>
+        </article>
+      </div>
+      <div class="mt-7">
+        <a
+          href="/portfolio"
+          class="inline-flex items-center gap-2 rounded-md border border-sky-900/60 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-zinc-100 transition hover:border-sky-500/60 hover:bg-slate-900"
+        >
+          Full portfolio
+          <ArrowRight class="h-4 w-4" />
         </a>
       </div>
     </div>

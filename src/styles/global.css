@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+#contact-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.72);
+}

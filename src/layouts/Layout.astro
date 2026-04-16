@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import ContactDialog from "../components/ContactDialog.astro";
 import sdLogo from "../assets/sd-logo-cropped.png";
 
 interface Props {
@@ -38,14 +39,21 @@ const {
           </span>
         </a>
         <nav class="flex flex-wrap items-center justify-end gap-3 text-sm text-zinc-300">
-          <a href="#services" class="rounded-md px-2 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">Services</a>
-          <a href="#portfolio" class="rounded-md px-2 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">Portfolio</a>
-          <a href="#contact" class="rounded-md border border-sky-900/60 bg-slate-900/40 px-3 py-1.5 font-medium text-zinc-100 transition hover:border-sky-500/60 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">Contact</a>
+          <a href="/#services" class="rounded-md px-2 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">Services</a>
+          <a href="/portfolio" class="rounded-md px-2 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">Portfolio</a>
+          <button
+            type="button"
+            data-contact-open
+            class="rounded-md border border-sky-900/60 bg-slate-900/40 px-3 py-1.5 font-medium text-zinc-100 transition hover:border-sky-500/60 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300"
+          >
+            Contact
+          </button>
         </nav>
       </div>
     </header>
     <main>
       <slot />
     </main>
+    <ContactDialog />
   </body>
 </html>

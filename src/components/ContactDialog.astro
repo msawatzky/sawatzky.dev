@@ -1,0 +1,168 @@
+---
+const formAction = import.meta.env.PUBLIC_CONTACT_FORM_ACTION?.trim() ?? "";
+const hasServerEndpoint = Boolean(formAction);
+---
+
+<dialog
+  id="contact-dialog"
+  class="m-auto w-[calc(100%-2rem)] max-h-[85vh] max-w-lg overflow-y-auto rounded-2xl border border-sky-900/60 bg-slate-950 p-0 text-zinc-100 shadow-[0_0_0_1px_rgba(255,255,255,0.03)] backdrop:bg-black/70"
+  aria-labelledby="contact-dialog-title"
+>
+  <div class="border-b border-slate-800 px-5 py-4 sm:px-6">
+    <h2 id="contact-dialog-title" class="text-lg font-semibold text-white">Tell me what you need</h2>
+    <p class="mt-1 text-sm text-zinc-400">
+      Ask questions first, or request a $50 custom demo. If we continue, your $50 is credited toward setup.
+    </p>
+  </div>
+  <form
+    id="contact-form"
+    class="px-5 py-4 sm:px-6 sm:pb-6"
+    method={hasServerEndpoint ? "POST" : "post"}
+    action={hasServerEndpoint ? formAction : undefined}
+    data-has-endpoint={hasServerEndpoint ? "true" : "false"}
+  >
+    {hasServerEndpoint && <input type="hidden" name="_subject" value="Sawatzky.dev - new inquiry" />}
+    <div class="space-y-4">
+      <label class="block">
+        <span class="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-400">What are you looking for?</span>
+        <select
+          name="inquiryType"
+          class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+        >
+          <option value="Info only">Just more info first</option>
+          <option value="$50 custom demo">I want the $50 custom demo</option>
+        </select>
+      </label>
+      <label class="block">
+        <span class="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-400">Name</span>
+        <input
+          type="text"
+          name="name"
+          required
+          autocomplete="name"
+          class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+          placeholder="Your name"
+        />
+      </label>
+      <label class="block">
+        <span class="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-400">Email</span>
+        <input
+          type="email"
+          name="email"
+          required
+          autocomplete="email"
+          class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+          placeholder="you@business.com"
+        />
+      </label>
+      <label class="block">
+        <span class="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-400">Business (optional)</span>
+        <input
+          type="text"
+          name="business"
+          autocomplete="organization"
+          class="w-full rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+          placeholder="Company or project name"
+        />
+      </label>
+      <label class="block">
+        <span class="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-400">How can I help?</span>
+        <textarea
+          name="message"
+          required
+          rows="4"
+          class="w-full resize-y rounded-md border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-white placeholder:text-zinc-500 focus:border-sky-500 focus:outline-none focus:ring-1 focus:ring-sky-500"
+          placeholder="Questions, goals, current site, and timeline..."
+        ></textarea>
+      </label>
+    </div>
+    <p class="mt-4 text-xs text-zinc-500">No commitment required. If you choose the $50 demo, it is credited toward your startup cost.</p>
+    {!hasServerEndpoint && (
+      <p class="mt-2 text-xs text-amber-300">
+        Form endpoint is not configured yet. Add <code>PUBLIC_CONTACT_FORM_ACTION</code> to enable submissions.
+      </p>
+    )}
+    <div class="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+      <button
+        type="button"
+        class="rounded-md border border-slate-700 px-4 py-2 text-sm font-medium text-zinc-200 transition hover:bg-slate-800"
+        data-contact-close
+      >
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="rounded-md bg-sky-300 px-4 py-2 text-sm font-semibold text-slate-950 transition hover:bg-sky-200"
+      >
+        Send message
+      </button>
+    </div>
+  </form>
+</dialog>
+
+<script>
+  const dialog = document.getElementById("contact-dialog");
+  const form = document.getElementById("contact-form");
+  const submitButton = form?.querySelector('button[type="submit"]');
+  const successRedirectPath = "/thanks";
+
+  function openContact(e) {
+    e.preventDefault();
+    if (dialog && "showModal" in dialog) dialog.showModal();
+  }
+
+  function closeContact() {
+    if (dialog && "close" in dialog) dialog.close();
+  }
+
+  document.querySelectorAll("[data-contact-open]").forEach((el) => {
+    el.addEventListener("click", openContact);
+  });
+
+  document.querySelectorAll("[data-contact-close]").forEach((el) => {
+    el.addEventListener("click", closeContact);
+  });
+
+  dialog?.addEventListener("click", (e) => {
+    if (e.target === dialog) closeContact();
+  });
+
+  form?.addEventListener("submit", (e) => {
+    if (form.dataset.hasEndpoint !== "true") {
+      e.preventDefault();
+      alert("Contact form is not configured yet. Please set PUBLIC_CONTACT_FORM_ACTION.");
+      return;
+    }
+
+    e.preventDefault();
+    const action = form.getAttribute("action");
+    if (!action) {
+      alert("Contact form endpoint is missing.");
+      return;
+    }
+
+    submitButton?.setAttribute("disabled", "true");
+    submitButton?.classList.add("opacity-70", "cursor-not-allowed");
+
+    fetch(action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: {
+        Accept: "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) throw new Error("Request failed");
+        closeContact();
+        form.reset();
+        window.location.assign(successRedirectPath);
+      })
+      .catch(() => {
+        alert("Could not send your message right now. Please try again.");
+      })
+      .finally(() => {
+        submitButton?.removeAttribute("disabled");
+        submitButton?.classList.remove("opacity-70", "cursor-not-allowed");
+      });
+  });
+</script>
