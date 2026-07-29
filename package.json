@@ -13,12 +13,14 @@
   "license": "ISC",
   "description": "Sawatzky Development agency website built with Astro.",
   "dependencies": {
+    "@astrojs/cloudflare": "^13.7.0",
     "@astrojs/react": "^5.0.3",
     "@tailwindcss/vite": "^4.2.2",
-    "astro": "^6.1.7",
+    "astro": "^6.4.8",
     "lucide-react": "^1.8.0",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.2.2",
+    "wrangler": "^4.115.0"
   }
 }
