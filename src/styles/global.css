@@ -73,6 +73,13 @@
     linear-gradient(145deg, #0b1220 0%, #12343a 48%, #1e1b4b 100%);
 }
 
+.hero-panel-sites {
+  background:
+    radial-gradient(circle at 88% 0%, rgba(251, 191, 36, 0.42), transparent 34%),
+    radial-gradient(circle at 0% 100%, rgba(34, 211, 238, 0.28), transparent 42%),
+    linear-gradient(145deg, #1c1410 0%, #134e4a 46%, #78350f 100%);
+}
+
 .hero-panel::before {
   content: "";
   position: absolute;
@@ -138,10 +145,10 @@
   @apply font-mono text-[0.7rem] font-medium uppercase tracking-[0.16em] text-cyan-700;
 }
 
-.nav-link {
-  @apply rounded-md px-2 py-1 font-mono text-xs uppercase tracking-[0.12em] text-slate-500 transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500;
+.nav-tab {
+  @apply rounded-md px-3 py-1.5 text-sm font-semibold text-slate-600 transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500;
 }
 
-.nav-link-active {
-  @apply text-cyan-700;
+.nav-tab-active {
+  @apply bg-white text-slate-950 shadow-sm;
 }

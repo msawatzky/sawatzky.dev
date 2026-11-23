@@ -14,6 +14,7 @@ const {
 } = Astro.props as Props;
 
 const path = Astro.url.pathname;
+const isHome = path === "/";
 const isWebsites = path.startsWith("/websites");
 ---
 
@@ -47,8 +48,11 @@ const isWebsites = path.startsWith("/websites");
             Sawatzky <span class="font-medium text-slate-500">Development</span>
           </span>
         </a>
-        <nav class="flex items-center justify-end gap-1 sm:gap-2">
-          <a href="/websites" class:list={["nav-link", isWebsites && "nav-link-active"]}>Websites</a>
+        <nav class="flex items-center justify-end gap-2 sm:gap-3" aria-label="Pages">
+          <div class="flex items-center rounded-lg bg-slate-900/10 p-1 ring-1 ring-slate-900/10">
+            <a href="/" class:list={["nav-tab", isHome && "nav-tab-active"]} aria-current={isHome ? "page" : undefined}>Consulting</a>
+            <a href="/websites" class:list={["nav-tab", isWebsites && "nav-tab-active"]} aria-current={isWebsites ? "page" : undefined}>Websites</a>
+          </div>
           <button
             type="button"
             data-contact-open
