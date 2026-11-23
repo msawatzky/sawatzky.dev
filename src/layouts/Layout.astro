@@ -9,9 +9,12 @@ interface Props {
 }
 
 const {
-  title = "Sawatzky Development | High-Performance Web Engineering",
-  description = "Bespoke, high-performance websites for local businesses built with Astro and deployed on Cloudflare.",
+  title = "Sawatzky Development | Developer & Technical Consultant",
+  description = "Independent developer and consultant. Advice, custom tools, and rapid lightweight websites.",
 } = Astro.props as Props;
+
+const path = Astro.url.pathname;
+const isWebsites = path.startsWith("/websites");
 ---
 
 <!doctype html>
@@ -21,30 +24,35 @@ const {
     <meta name="description" content={description} />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
-  <body class="min-h-screen bg-slate-950 text-zinc-100 antialiased">
-    <div class="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_15%_10%,rgba(88,214,255,0.18),transparent_34%),radial-gradient(circle_at_85%_0%,rgba(18,73,154,0.24),transparent_34%)]"></div>
-    <header class="sticky top-0 z-50 border-b border-sky-900/40 bg-slate-950/90 backdrop-blur-md">
-      <div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <a href="/" class="inline-flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">
+  <body class="page-shell min-h-screen font-sans text-slate-900 antialiased">
+    <header class="sticky top-0 z-50 border-b border-slate-200/80 bg-[#e7eef3]/85 backdrop-blur-md">
+      <div class="h-1 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-300"></div>
+      <div class="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <a href="/" class="inline-flex items-center gap-2.5 rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500">
           <img
             src={sdLogo.src}
             alt="Sawatzky Development monogram"
-            class="h-14 w-14 object-contain sm:h-16 sm:w-16"
+            class="h-11 w-11 rounded-md object-contain ring-1 ring-cyan-400/40 sm:h-12 sm:w-12"
             loading="eager"
           />
-          <span class="hidden text-base font-semibold uppercase tracking-[0.12em] text-zinc-100 sm:inline lg:text-lg">
-            Sawatzky <span class="font-medium tracking-[0.14em] text-zinc-400">Development</span>
+          <span class="hidden text-sm font-semibold tracking-tight text-slate-900 sm:inline">
+            Sawatzky <span class="font-medium text-slate-500">Development</span>
           </span>
         </a>
-        <nav class="flex flex-wrap items-center justify-end gap-3 text-sm text-zinc-300">
-          <a href="/#services" class="rounded-md px-2 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">Services</a>
-          <a href="/portfolio" class="rounded-md px-2 py-1 transition hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300">Portfolio</a>
+        <nav class="flex items-center justify-end gap-1 sm:gap-2">
+          <a href="/websites" class:list={["nav-link", isWebsites && "nav-link-active"]}>Websites</a>
           <button
             type="button"
             data-contact-open
-            class="rounded-md border border-sky-900/60 bg-slate-900/40 px-3 py-1.5 font-medium text-zinc-100 transition hover:border-sky-500/60 hover:bg-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300"
+            class="ml-1 rounded-lg bg-slate-950 px-3.5 py-1.5 font-mono text-xs font-medium uppercase tracking-[0.12em] text-cyan-300 transition hover:bg-slate-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#e7eef3]"
           >
             Contact
           </button>
@@ -54,6 +62,16 @@ const {
     <main>
       <slot />
     </main>
+    <footer class="border-t border-slate-800 bg-slate-950 text-slate-400">
+      <div class="h-1 bg-gradient-to-r from-cyan-400 via-indigo-500 to-amber-300"></div>
+      <div class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-4 py-8 text-sm sm:flex-row sm:items-center sm:justify-between sm:px-6 lg:px-8">
+        <p class="inline-flex items-center gap-2">
+          <img src={sdLogo.src} alt="" class="h-5 w-5 rounded-sm object-contain" loading="lazy" />
+          © 2026 Sawatzky Development
+        </p>
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-cyan-300/80">Developer & consultant</p>
+      </div>
+    </footer>
     <ContactDialog />
   </body>
 </html>

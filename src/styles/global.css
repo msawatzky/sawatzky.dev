@@ -1,5 +1,143 @@
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-serif: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --color-ink: #0f172a;
+  --color-paper: #e7eef3;
+  --color-accent: #0891b2;
+  --color-accent-bright: #22d3ee;
+}
+
 #contact-dialog::backdrop {
-  background: rgba(0, 0, 0, 0.72);
+  background: rgba(15, 23, 42, 0.55);
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out both;
+}
+
+.animate-delay-1 {
+  animation-delay: 0.08s;
+}
+
+.animate-delay-2 {
+  animation-delay: 0.16s;
+}
+
+.animate-delay-3 {
+  animation-delay: 0.24s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up {
+    animation: none;
+  }
+}
+
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+.page-shell {
+  background-color: #e7eef3;
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(34, 211, 238, 0.18), transparent 32%),
+    radial-gradient(circle at 100% 0%, rgba(99, 102, 241, 0.14), transparent 28%),
+    linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+  background-size: auto, auto, 28px 28px, 28px 28px;
+}
+
+.hero-panel {
+  background:
+    radial-gradient(circle at 88% 0%, rgba(34, 211, 238, 0.35), transparent 34%),
+    radial-gradient(circle at 8% 100%, rgba(99, 102, 241, 0.45), transparent 40%),
+    linear-gradient(145deg, #0b1220 0%, #12343a 48%, #1e1b4b 100%);
+}
+
+.hero-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent 88%);
+  pointer-events: none;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition duration-200 hover:bg-cyan-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-800 transition duration-200 hover:border-cyan-400 hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 focus-visible:ring-offset-[#e7eef3];
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition duration-200 hover:border-cyan-300/60 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300;
+}
+
+.card-interactive {
+  @apply transition duration-200 ease-out hover:-translate-y-0.5 hover:shadow-md;
+}
+
+.card-interactive-popular {
+  @apply transition duration-200 ease-out hover:-translate-y-0.5;
+}
+
+.tech-card {
+  @apply relative flex flex-col overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-6 shadow-[0_10px_30px_-18px_rgba(15,23,42,0.45)];
+}
+
+.tech-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+}
+
+.tech-card-cyan::before {
+  background: #22d3ee;
+}
+
+.tech-card-indigo::before {
+  background: #818cf8;
+}
+
+.tech-card-amber::before {
+  background: #fbbf24;
+}
+
+.tag-accent {
+  @apply inline-flex items-center gap-2 rounded-md border border-cyan-300/30 bg-cyan-400/10 px-2.5 py-1 font-mono text-[0.7rem] font-medium uppercase tracking-[0.16em] text-cyan-100;
+}
+
+.kicker {
+  @apply font-mono text-[0.7rem] font-medium uppercase tracking-[0.16em] text-cyan-700;
+}
+
+.nav-link {
+  @apply rounded-md px-2 py-1 font-mono text-xs uppercase tracking-[0.12em] text-slate-500 transition hover:text-slate-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500;
+}
+
+.nav-link-active {
+  @apply text-cyan-700;
 }

@@ -7,6 +7,9 @@ export default defineConfig({
   site: "https://sawatzky.dev",
   adapter: cloudflare(),
   integrations: [react()],
+  redirects: {
+    "/portfolio": "/",
+  },
   vite: {
     plugins: [tailwindcss()],
   },

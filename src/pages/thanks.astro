@@ -1,43 +1,26 @@
 ---
-import { ArrowDown, CheckCircle2 } from "lucide-react";
 import Layout from "../layouts/Layout.astro";
+import Icon from "../components/Icon.astro";
 ---
 
 <Layout
   title="Thanks | Sawatzky Development"
   description="Thanks for reaching out to Sawatzky Development."
 >
-  <section class="mx-auto flex min-h-[calc(100dvh-5.5rem)] w-full max-w-2xl items-center px-6 py-10 sm:px-8 sm:py-12 lg:px-10">
-    <div
-      class="w-full rounded-2xl border border-sky-900/60 bg-gradient-to-br from-slate-900 via-slate-900 to-sky-950/40"
-      style="padding: clamp(1.5rem, 3.5vw, 2.25rem);"
-    >
-      <div class="flex flex-col items-center gap-4 text-center sm:gap-5">
-        <div class="inline-flex h-14 w-14 items-center justify-center rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-300 sm:h-16 sm:w-16">
-          <CheckCircle2 class="h-7 w-7 sm:h-8 sm:w-8" />
+  <section class="mx-auto flex min-h-[calc(100dvh-10rem)] w-full max-w-2xl items-center px-4 py-16 sm:px-6">
+    <div class="w-full rounded-2xl border border-stone-200 bg-white p-6 sm:p-10">
+      <div class="flex flex-col items-start gap-4">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-full bg-teal-800/10 text-teal-800">
+          <Icon name="check" class="h-6 w-6" />
         </div>
-        <h1 class="text-balance text-3xl font-semibold text-white sm:text-4xl">Thanks - your message is in.</h1>
-        <p class="max-w-xl text-sm leading-relaxed text-zinc-300 sm:text-base">
-          I review every inquiry personally and typically reply within one business day with next steps.
+        <h1 class="font-serif text-balance text-3xl font-medium tracking-tight text-stone-950 sm:text-4xl">Thanks — your note is in.</h1>
+        <p class="max-w-xl text-sm leading-relaxed text-stone-600 sm:text-base">
+          I read every inquiry myself and usually reply within one business day with a direct next step.
         </p>
       </div>
-      <div class="mx-auto mt-6 max-w-xl rounded-xl border border-slate-800 bg-slate-950/40 p-4 sm:mt-8 sm:p-5">
-        <p class="text-sm font-medium text-zinc-100">While you wait:</p>
-        <p class="mt-1.5 text-sm text-zinc-300">Take a quick look at recent work to see style, performance, and structure.</p>
-      </div>
-      <div class="mt-7 flex flex-col items-center justify-center gap-3 sm:mt-9 sm:flex-row">
-        <a
-          href="/portfolio"
-          class="inline-flex items-center justify-center gap-2 rounded-md border border-slate-700 bg-slate-900/40 px-5 py-3 text-sm font-medium text-zinc-200 transition hover:border-sky-500/50 hover:text-white"
-        >
-          <ArrowDown class="h-4 w-4 text-sky-300" />
-          Next step: browse portfolio
-        </a>
-        <a
-          href="/"
-          class="inline-flex items-center justify-center rounded-md border border-sky-900/60 bg-slate-900/40 px-5 py-3 text-sm font-semibold text-zinc-100 transition hover:border-sky-500/60 hover:bg-slate-900"
-        >
-          Back to homepage
+      <div class="mt-8">
+        <a href="/" class="btn-primary">
+          Back home
         </a>
       </div>
     </div>
