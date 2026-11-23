@@ -5,10 +5,10 @@ const hasServerEndpoint = true;
 
 <dialog
   id="contact-dialog"
-  class="m-auto w-[calc(100%-2rem)] max-h-[85vh] max-w-lg overflow-y-auto rounded-2xl border border-stone-200 bg-white p-0 text-stone-900 shadow-xl backdrop:bg-stone-950/40"
+  class="m-auto flex w-[calc(100%-2rem)] max-h-[85vh] max-w-lg flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white p-0 text-stone-900 shadow-xl backdrop:bg-stone-950/40"
   aria-labelledby="contact-dialog-title"
 >
-  <div class="border-b border-stone-200 px-5 py-4 sm:px-6">
+  <div class="shrink-0 border-b border-stone-200 px-5 py-4 sm:px-6">
     <h2 id="contact-dialog-title" class="font-serif text-2xl font-medium text-stone-950">Tell me what you need</h2>
     <p class="mt-1 text-sm leading-relaxed text-stone-500">
       Consulting, software, a website, or a question you have not named yet. No package required to start.
@@ -16,13 +16,13 @@ const hasServerEndpoint = true;
   </div>
   <form
     id="contact-form"
-    class="px-5 py-4 sm:px-6 sm:pb-6"
+    class="flex min-h-0 flex-1 flex-col"
     method={hasServerEndpoint ? "POST" : "post"}
     action={hasServerEndpoint ? formAction : undefined}
     data-has-endpoint={hasServerEndpoint ? "true" : "false"}
   >
     {hasServerEndpoint && <input type="hidden" name="_subject" value="Sawatzky.dev - new inquiry" />}
-    <div class="space-y-4">
+    <div class="min-h-0 flex-1 space-y-4 overflow-y-auto px-5 py-4 sm:px-6">
       <label class="block">
         <span class="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-stone-500">What are you looking for?</span>
         <select
@@ -78,14 +78,14 @@ const hasServerEndpoint = true;
           placeholder="What is going on, what you have tried, and what a good outcome looks like."
         ></textarea>
       </label>
+      <p class="text-xs leading-relaxed text-stone-500">I reply personally. A website demo, if you want one, is credited toward setup.</p>
+      {!hasServerEndpoint && (
+        <p class="text-xs text-amber-700">
+          Form endpoint is not configured yet. Add <code>PUBLIC_CONTACT_FORM_ACTION</code> to enable submissions.
+        </p>
+      )}
     </div>
-    <p class="mt-4 text-xs leading-relaxed text-stone-500">I reply personally. A website demo, if you want one, is credited toward setup.</p>
-    {!hasServerEndpoint && (
-      <p class="mt-2 text-xs text-amber-700">
-        Form endpoint is not configured yet. Add <code>PUBLIC_CONTACT_FORM_ACTION</code> to enable submissions.
-      </p>
-    )}
-    <div class="mt-5 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+    <div class="flex shrink-0 flex-col-reverse gap-2 border-t border-stone-200 bg-white px-5 py-3 sm:flex-row sm:justify-end sm:px-6">
       <button
         type="button"
         class="rounded-full border border-stone-300 px-4 py-2 text-sm font-medium text-stone-700 transition hover:bg-stone-50"
