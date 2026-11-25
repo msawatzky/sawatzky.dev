@@ -1,0 +1,128 @@
+---
+import Icon from "./Icon.astro";
+import type { Testimonial } from "../data/testimonials";
+
+interface Props {
+  items: Testimonial[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="mt-10" data-carousel>
+  <div class="overflow-hidden">
+    <div class="flex transition-transform duration-300 ease-out motion-reduce:transition-none" data-track>
+      {
+        items.map((item) => (
+          <figure class="tech-card tech-card-cyan w-full shrink-0">
+            <blockquote class="text-base leading-relaxed text-slate-800 sm:text-lg">“{item.quote}”</blockquote>
+            <figcaption class="mt-6 text-sm text-slate-600">
+              <span class="font-semibold text-slate-900">{item.name}</span>
+              <span class="mt-0.5 block">{item.detail}</span>
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+  </div>
+  {
+    items.length > 1 && (
+      <div class="mt-4 flex items-center justify-between gap-4">
+        <button
+          type="button"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-800 transition hover:border-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
+          data-prev
+          aria-label="Previous testimonial"
+        >
+          <Icon name="arrow" class="h-4 w-4 rotate-180" />
+        </button>
+        <div class="flex items-center gap-2" role="group" aria-label="Choose a testimonial">
+          {
+            items.map((item, index) => (
+              <button
+                type="button"
+                class="h-2.5 w-2.5 rounded-full bg-slate-300 transition hover:bg-slate-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
+                data-dot
+                aria-label={`Show testimonial from ${item.name}`}
+                aria-current={index === 0 ? "true" : "false"}
+              />
+            ))
+          }
+        </div>
+        <button
+          type="button"
+          class="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-slate-300 bg-white text-slate-800 transition hover:border-cyan-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
+          data-next
+          aria-label="Next testimonial"
+        >
+          <Icon name="arrow" class="h-4 w-4" />
+        </button>
+      </div>
+    )
+  }
+</div>
+
+<script>
+  function showSlide(root: HTMLElement, index: number) {
+    const track = root.querySelector<HTMLElement>("[data-track]");
+    const slides = track ? [...track.children] : [];
+    const dots = [...root.querySelectorAll<HTMLButtonElement>("[data-dot]")];
+    if (!track || slides.length === 0) return;
+
+    const nextIndex = (index + slides.length) % slides.length;
+    root.dataset.index = String(nextIndex);
+    track.style.transform = `translateX(-${nextIndex * 100}%)`;
+
+    slides.forEach((slide, slideIndex) => {
+      if (slideIndex === nextIndex) slide.removeAttribute("aria-hidden");
+      else slide.setAttribute("aria-hidden", "true");
+    });
+
+    dots.forEach((dot, dotIndex) => {
+      const active = dotIndex === nextIndex;
+      dot.setAttribute("aria-current", active ? "true" : "false");
+      dot.classList.toggle("bg-cyan-400", active);
+      dot.classList.toggle("bg-slate-300", !active);
+    });
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-carousel]").forEach((root) => {
+    if (root.dataset.ready === "true") return;
+    root.dataset.ready = "true";
+
+    const total = root.querySelector("[data-track]")?.children.length ?? 0;
+    if (total < 2) return;
+
+    root.querySelector("[data-prev]")?.addEventListener("click", () => {
+      showSlide(root, Number(root.dataset.index ?? 0) - 1);
+    });
+    root.querySelector("[data-next]")?.addEventListener("click", () => {
+      showSlide(root, Number(root.dataset.index ?? 0) + 1);
+    });
+    root.querySelectorAll<HTMLButtonElement>("[data-dot]").forEach((dot, index) => {
+      dot.addEventListener("click", () => showSlide(root, index));
+    });
+
+    showSlide(root, 0);
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const delay = 5000;
+    let timer = window.setInterval(() => {
+      showSlide(root, Number(root.dataset.index ?? 0) + 1);
+    }, delay);
+
+    const pause = () => window.clearInterval(timer);
+    const resume = () => {
+      pause();
+      timer = window.setInterval(() => {
+        showSlide(root, Number(root.dataset.index ?? 0) + 1);
+      }, delay);
+    };
+
+    root.addEventListener("mouseenter", pause);
+    root.addEventListener("mouseleave", resume);
+    root.addEventListener("focusin", pause);
+    root.addEventListener("focusout", resume);
+  });
+</script>
